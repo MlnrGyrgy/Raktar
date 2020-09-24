@@ -36,10 +36,30 @@ namespace Raktar
             get { return db; }
             set { db = value; }
         }
+        private string Alakit(string szoveg)
+        {
+            
+            string tmp = "";
+            string ekezetes = "áéíúüűóöő";
+            string mire = "aeiuuuooo";
+            for (int i = 0; i < szoveg.Length; i++)
+            {
+                int hol = ekezetes.IndexOf(szoveg[i]);
+                if (hol > -1)
+                {
+                    tmp += mire[hol];                         
+                }
+                else
+                {
+                    tmp += szoveg[i];
+                }
+            }
+            return tmp;
+        }
         public Termek(string kod, string nev, int ar, int db)
         {
             this.kod = kod;
-            this.nev = nev;
+            this.nev = Alakit(nev);
             this.ar = ar;
             this.db = db;
         }

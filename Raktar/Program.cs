@@ -22,14 +22,19 @@ namespace Raktar
                  * sor[2] -> Ár
                  * sor[3] -> Darabszám
                  */
-                 string[] sor = raktar.ReadLine().Split(';');
+                string[] sor = raktar.ReadLine().Split(';');
                 termekek.Add(new Termek(sor[0], sor[1], int.Parse(sor[2]), int.Parse(sor[3])));
+             
             }
             raktar.Close();
         }
         static void Main(string[] args)
         {
-            BeolvasRaktar();
+             BeolvasRaktar();
+            foreach (var t in termekek)
+            {
+                Console.WriteLine(t.NEV);
+            }
             Console.ReadKey();
         }
     }
