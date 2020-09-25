@@ -28,12 +28,33 @@ namespace Raktar
             }
             raktar.Close();
         }
+        static List<Megrendeles> megrendeltek = new List<Megrendeles>();
+        static void BeolvasMegrendeles()
+        {
+            StreamReader megrendel = new StreamReader("rendeles.csv");
+            while (!megrendel.EndOfStream)
+            {
+                string[] sor = megrendel.ReadLine().Split(';');
+                if (sor[0]=="M")
+                {
+                    megrendeltek.Add(new Megrendeles (sor[1], sor[2], sor[3]));
+                }
+                
+            }
+            megrendel.Close();
+            
+        }
         static void Main(string[] args)
         {
-             BeolvasRaktar();
+            BeolvasRaktar();
+            BeolvasMegrendeles();
             foreach (var t in termekek)
             {
                 Console.WriteLine(t.NEV);
+            }
+            foreach (var i in megrendeltek)
+            {
+                Console.WriteLine(i.DATUM +" "+i.ID+ " " + i.EMAIL);
             }
             Console.ReadKey();
         }
